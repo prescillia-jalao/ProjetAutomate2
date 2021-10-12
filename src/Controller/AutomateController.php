@@ -87,7 +87,7 @@ class AutomateController extends AbstractController
         return new Response('ok');
     }
 
-    #[Route(path: "/patient/{id}", methods: ['PUT'])] // récupérer tous les étudiants en format json
+    #[Route(path: "/patient/{id}", methods: ['PUT'])]
     public function quatriemeRoute(Request $request, EntityManagerInterface $em, int $id)
     {
         $data = json_decode($request->getContent()); //récupération de ce qu'on a ajouté dans POSTMAN
@@ -95,8 +95,24 @@ class AutomateController extends AbstractController
         $patient = $em->getRepository(Patient::class)->find($id);
 
         $patient->nom = $data->nom; //récupération de la nouvelle valeur dans le name de l'étudiant
+      //  $patient->prenom = $data->prenom;
+        $em->flush();
         return $this->render('patient.json.twig', ['patient' => $patient]);
+    }
 
+    #[Route(path: "/patient", methods: ['POST'])]
+    public function cinquiemeRoute(Request $request, EntityManagerInterface $em)
+    {
+        $data = json_decode($request->getContent()); //récupération de ce qu'on a ajouté dans POSTMAN
+        $nom=$data->nom;
+        $prenom=$data->prenom;
+        $age=$data->age;
+        $hopital = $em->getRepository(Hopital::class)->findOneBy(['nom_hopital' => 'CHU Poitiers']);
+        $patient = new Patient($nom, $prenom, $age, $hopital);
+        $em->persist($patient);
+
+        $em->flush();
+        return $this->render('patient.json.twig', ['patient' => $patient]);
     }
 
 }
