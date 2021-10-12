@@ -23,9 +23,9 @@ class AutomateController extends AbstractController
     #[Route(path: "/listehopital")]
     public function demo(EntityManagerInterface $em)
     {
-        $hopitaux = $em->getRepository(Echantillon::class)->findAll();
-        dump($hopitaux);
-        return new Response('Il y a '.count($hopitaux).' hôpitaux.');
+        $echantillons = $em->getRepository(Echantillon::class)->findAll();
+        dump($echantillons);
+        return new Response('Il y a '.count($echantillons).' echantillons.');
     }
 
     #[Route(path: "/listeana")]
@@ -43,7 +43,7 @@ class AutomateController extends AbstractController
         // Création de la promo M3
         $hopital1 = new Echantillon('nouveaunom1');
         $em->persist($hopital1);
-        $hopital1->nom_hopital = 'nouveaunom2';
+        $hopital1->type = 'nouveaunom2';
 
         // Ou autre façon d'avoir la promo
         $hopital = $em->getRepository(Echantillon::class)->findOneBy(['nom_hopital' => 'CHU Poitiers']);
