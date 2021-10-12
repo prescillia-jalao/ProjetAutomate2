@@ -4,7 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Analyse;
-use App\Entity\Hopital;
+use App\Entity\Echantillon;
 use App\Entity\Patient;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,7 +23,7 @@ class AutomateController extends AbstractController
     #[Route(path: "/listehopital")]
     public function demo(EntityManagerInterface $em)
     {
-        $hopitaux = $em->getRepository(Hopital::class)->findAll();
+        $hopitaux = $em->getRepository(Echantillon::class)->findAll();
         dump($hopitaux);
         return new Response('Il y a '.count($hopitaux).' hôpitaux.');
     }
@@ -41,12 +41,12 @@ class AutomateController extends AbstractController
     {
 
         // Création de la promo M3
-        $hopital1 = new Hopital('nouveaunom1');
+        $hopital1 = new Echantillon('nouveaunom1');
         $em->persist($hopital1);
         $hopital1->nom_hopital = 'nouveaunom2';
 
         // Ou autre façon d'avoir la promo
-        $hopital = $em->getRepository(Hopital::class)->findOneBy(['nom_hopital' => 'CHU Poitiers']);
+        $hopital = $em->getRepository(Echantillon::class)->findOneBy(['nom_hopital' => 'CHU Poitiers']);
 
         //$em->remove($promoL3);
         $patient = new Patient('Toto', 'Tutu', 20, $hopital);
@@ -107,7 +107,7 @@ class AutomateController extends AbstractController
         $nom=$data->nom;
         $prenom=$data->prenom;
         $age=$data->age;
-        $hopital = $em->getRepository(Hopital::class)->findOneBy(['nom_hopital' => 'CHU Poitiers']);
+        $hopital = $em->getRepository(Echantillon::class)->findOneBy(['nom_hopital' => 'CHU Poitiers']);
         $patient = new Patient($nom, $prenom, $age, $hopital);
         $em->persist($patient);
 

@@ -45,34 +45,26 @@ class Patient
     public int $age;
 
 
-    /**
-     * @var Hopital|null
-     *
-     * @ORM\ManyToOne(targetEntity=Hopital::class, fetch="EAGER")
-     * @ORM\JoinColumn(name="Hopital_id", referencedColumnName="ID_hopital")
-     */
-    public ?Hopital $hopital;
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity=Analyse::class, mappedBy="patient", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity=Echantillon::class, mappedBy="patient", fetch="EAGER")
      */
-    public Collection $listeAnalyses;
+    public Collection $listeEchantillonsP;
 
     /**
      * Patient constructor.
      * @param string $nom
      * @param string $prenom
      * @param int $age
-     * @param Hopital|null $hopital
+     * @param Echantillon|null $listeEchantillonsP
      */
-    public function __construct(string $nom, string $prenom, int $age, ?Hopital $hopital = null)
+    public function __construct(string $nom, string $prenom, int $age, ?Echantillon $listeEchantillonsP = null)
     {
-        $this->hopital = $hopital;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->age = $age;
-        $this->listeAnalyses = new ArrayCollection();
+        $this->listeEchantillonsP = new ArrayCollection();
     }
 
 
