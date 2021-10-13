@@ -1,0 +1,16 @@
+{
+    "Pour le patient" : [ {
+        "Nom du patient" : "{{ patient.nom }}",
+        "Prenom du patient" : "{{patient.prenom }}"}
+    ],
+    "Liste des échantillons" : [
+        {%  for echantillon in liste %}
+        {
+            "Id" : "{{ echantillon.id }}",
+            "Type" : "{{ echantillon.type }}",
+            "Analyse" : "{{ echantillon.analyse.nom }}"
+        }
+        {% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}

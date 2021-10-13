@@ -2,10 +2,10 @@
     "Liste des patients" : [
         {%  for patient in liste %}
         {
-            "id" : "{{ patient.id }}",
-            "nom" : "{{ patient.nom }}",
-            "prenom" : "{{ patient.prenom }}",
-            "age" : "{{ patient.age }}"
+            "Id" : "{{ patient.id }}",
+            "Nom" : "{{ patient.nom }}",
+            "Prenom" : "{{ patient.prenom }}",
+            "Age" : "{{ patient.age }}"
         }
         {% if not loop.last %},{% endif %}
         {% endfor %}

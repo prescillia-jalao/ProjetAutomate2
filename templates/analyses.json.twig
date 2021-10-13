@@ -1,0 +1,13 @@
+{
+    "Liste des analyses" : [
+        {%  for analyse in liste %}
+        {
+            "Id" : "{{ analyse.id }}",
+            "Nom" : "{{ analyse.nom }}",
+            "Valeur inférieure" : "{{ analyse.valInf }}",
+            "Valeur supérieure" : "{{ analyse.valSup }}"
+        }
+        {% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}

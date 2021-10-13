@@ -32,11 +32,13 @@ class Patient
      */
     public string $nom;
 
+
     /**
      * @var string
      * @ORM\Column(name="Prenom", type="string")
      */
     public string $prenom;
+
 
     /**
      * @var Int
@@ -45,12 +47,11 @@ class Patient
     public int $age;
 
 
-
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity=Echantillon::class, mappedBy="patient", fetch="EAGER")
      */
-    public Collection $listeEchantillonsP;
+    private Collection $listeEchantillonsP;
 
     /**
      * Patient constructor.
@@ -59,13 +60,14 @@ class Patient
      * @param int $age
      * @param Echantillon|null $listeEchantillonsP
      */
-    public function __construct(string $nom, string $prenom, int $age, ?Echantillon $listeEchantillonsP = null)
+    public function __construct(string $nom, string $prenom, int $age)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->age = $age;
         $this->listeEchantillonsP = new ArrayCollection();
     }
+
 
 
 }

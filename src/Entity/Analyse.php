@@ -31,68 +31,21 @@ class Analyse
      * @var string
      * @ORM\Column(name="Nom", type="text")
      */
-    private string $nom;
-
-    /**
-     * @return string
-     */
-    public function getNom(): string
-    {
-        return $this->nom;
-    }
-
-    /**
-     * @param string $nom
-     */
-    public function setNom(string $nom): void
-    {
-        $this->nom = $nom;
-    }
-
-    /**
-     * @var Int
-     * @ORM\Column(name="Val_inf", type="integer")
-     */
-    private int $val_inf;
+    public string $nom;
 
 
     /**
-     * @return Int
+     * @var float
+     * @ORM\Column(name="Val_inf", type="float")
      */
-    public function getValInf(): int
-    {
-        return $this->val_inf;
-    }
+    public float $val_inf;
+
 
     /**
-     * @param Int $val_inf
+     * @var float
+     * @ORM\Column(name="Val_sup", type="float")
      */
-    public function setValInf(int $val_inf): void
-    {
-        $this->val_inf = $val_inf;
-    }
-
-    /**
-     * @var Int
-     * @ORM\Column(name="Val_sup", type="integer")
-     */
-    private int $val_sup;
-
-    /**
-     * @return Int
-     */
-    public function getValSup(): int
-    {
-        return $this->val_sup;
-    }
-
-    /**
-     * @param Int $val_sup
-     */
-    public function setValSup(int $val_sup): void
-    {
-        $this->val_sup = $val_sup;
-    }
+    public float $val_sup;
 
 
     /**
@@ -101,30 +54,14 @@ class Analyse
      */
     private Collection $listeEchantillonsA;
 
-    /**
-     * @return Collection
-     */
-    public function getListeEchantillonsA(): Collection
-    {
-        return $this->listeEchantillonsA;
-    }
-
-    /**
-     * @param Collection $listeEchantillonsA
-     */
-    public function setListeEchantillonsA(Collection $listeEchantillonsA): void
-    {
-        $this->listeEchantillonsA = $listeEchantillonsA;
-    }
 
     /**
      * Constructor de l'analyse
      * @param string $nom
-     * @param int $val_inf
-     * @param int $val_sup
-     * @param Echantillon|null $listeEchantillonA
+     * @param float $val_inf
+     * @param float $val_sup
      */
-    public function __construct(string $nom, int $val_inf, int $val_sup, ?Echantillon $listeEchantillonA = null)
+    public function __construct(string $nom, float $val_inf, float $val_sup)
     {
         $this->nom = $nom;
         $this->val_inf = $val_inf;
